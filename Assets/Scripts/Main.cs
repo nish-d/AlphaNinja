@@ -15,6 +15,12 @@ public class Main : MonoBehaviour {
 	public Transform TouchTrail;
 	private RaycastHit2D hit;
 	public static int misses;
+	public AudioClip explodeSound;
+	public AudioClip gameOver;
+	private AudioSource source;
+	private float volLowRange = .5f;
+	private float volHighRange = 1.0f;
+	float vol;
 	// Use this for initialization
 	void Start () {
 		
@@ -22,6 +28,7 @@ public class Main : MonoBehaviour {
 		InvokeRepeating("SpawnAlpha", 0.2f, 1);
 		misses = 0;
 		score = 0;
+		source = GetComponent<AudioSource> ();
 	}
 
 	// Update is called once per fram
@@ -46,6 +53,8 @@ public class Main : MonoBehaviour {
 					//soundEffects.collectSource.GetComponent<AudioSource>().clip = soundEffects.CollectSFX;
 					//soundEffects.collectSource.GetComponent<AudioSource>().Play();
 					//DrawCandyFX(hit.point);
+					vol = Random.Range (volLowRange, volHighRange);
+					source.PlayOneShot(explodeSound,vol);
 					Instantiate (explosion, hit.collider.gameObject.transform.position, Quaternion.identity);
 					hit.collider.gameObject.SetActive (false);
 					Destroy (hit.collider.gameObject);
@@ -55,6 +64,7 @@ public class Main : MonoBehaviour {
 			}		
 		}
 		if (misses > 10) {
+			source.PlayOneShot (gameOver);
 			Application.LoadLevel ("Menu");
 			if (score > highScore)
 				highScore = score;

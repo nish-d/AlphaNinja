@@ -1,11 +1,14 @@
 fileFormatVersion: 2
 guid: 5159c17d345294d439ac49c7267ea063
-timeCreated: 1461227343
+timeCreated: 1461237724
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
   - sphere: {fileID: 104392, guid: cd4a4b078af128d4b89ae4ba69f80376, type: 2}
+  - explosion: {instanceID: 0}
+  - TouchTrail: {instanceID: 0}
+  - explodeSound: {fileID: 8300000, guid: c4d8928c75c21af43998193f0f038429, type: 3}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
